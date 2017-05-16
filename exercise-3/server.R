@@ -1,8 +1,10 @@
 # server.R
+library(shiny)
 library(dplyr)
+library(plotly)
 
 # Read in data
-setwd('~/Documents/info-201/m14-shiny/exercise-3/')
+setwd("~/Cloud Storage/OneDrive - UW Office 365/UW 2016-17/Spring '17/INFO 201/Assignments/Exercises/m18-shiny/exercise-3")
 source('./scripts/buildMap.R')
 df <- read.csv('./data/electoral_college.csv', stringsAsFactors = FALSE)
 state.codes <- read.csv('./data/state_codes.csv', stringsAsFactors = FALSE)
@@ -17,7 +19,8 @@ joined.data <- joined.data %>% mutate(ratio = votes/population * 100000)
 shinyServer(function(input, output) { 
   
   # Render a plotly object that returns your map
-  output$map <- renderPlotly({ 
+  output$map <- renderPlotly({
+      pop <- eval(parse(text = input$selected))
       return(BuildMap(joined.data, 'population'))
   })
 })

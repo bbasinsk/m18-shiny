@@ -9,6 +9,15 @@ library(shiny)
 # It should takes as an input the number of observations, and a color
 # It should return a rendered plot
 shinyServer(function(input, output) {
+  
+  library('plotly')
   # Save a 'scatter' property which is a renderPlot object (that renders a scatterplot)
+  
+  output$scatter <- renderPlot({
+    p <- plot(iris$Sepal.Length, iris$Petal.Length, main="Scatterplot Example", type = 'p'
+         xlab="Sepal Length ", ylab="Petal Length ")
+    
+    return (p)
+  })
   
 })

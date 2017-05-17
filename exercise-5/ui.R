@@ -7,7 +7,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Add a descriptive application title
-  titlePanel("Add Title Here"),
+  titlePanel("Thoughts on Gender Roles"),
   
   # Here you will add the interactivity to your app
   # Create a selectInput where the user can select either Men, Women, or Both. 
@@ -19,18 +19,18 @@ shinyUI(fluidPage(
     sidebarPanel(
       #selectInput for Men, Women, or Both
       #inputID = sex
-      
+      selectInput('sex', 'Men', list('Men' = 'Men', 'Women' = 'Women', 'Both' = 'Both')),
       
       #selectInput for Agree or Disagree
       #inputID = thoughts
-      
+      selectInput('thoughts', 'Agree', list('Agree' = 'agree', 'Disagree' = 'disagree'))
       
     ),
     
     # Show a plot of the generated distribution
     mainPanel(
       #give your plot a descriptive name
-       plotOutput("plotNamehere")
+       plotOutput("womensrole.plot")
     )
   )
 ))
